@@ -2,4 +2,21 @@
 <section class="comments">
 	{{ template "_internal/disqus.html" . }}
 </section>
+{{/* Add support for Cactus comment system */}}
+{{ else if .Site.Params.cactus.enabled }}
+<section class="comments">
+	<script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+	<link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+	<div id="comment-section"></div>
+	<script>
+	initComments({
+	node: document.getElementById("comment-section"),
+	defaultHomeserverUrl: "https://matrix.cactus.chat:8448",
+	serverName: "cactus.chat",
+	siteName: "akkblogs",
+	commentSectionId: "{{ .Params.csID }}"
+	})
+	</script>
+</section>
+
 {{ end }}
